@@ -6,5 +6,9 @@
     "sections" : {
         "description" : "Use Teljoy as a payment processor for WooCommerce.",
         "changelog": "1.0.2 - Added support for WooCommerce 5.5.2"
+    },
+    "banners":{
+        "low" : "krispykremesa.sinappsus.co.za/banner-772x250.png",
+        "high" : "krispykremesa.sinappsus.co.za/banner-772x250.png"
     }
 }
