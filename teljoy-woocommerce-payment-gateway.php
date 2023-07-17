@@ -35,17 +35,6 @@ if (in_array($plugin_path, wp_get_active_and_valid_plugins()) || in_array($plugi
 		'teljoy-woocommerce-payment-gateway'  // Plugin slug. Usually it's the same as the name of the directory.
 	);
 
-	$myUpdateChecker->addHttpRequestArgFilter(function($args) {
-		// Replace with your actual username and password
-		$username = 'artgraven';
-		$password = 'ugrtnvdpacbfb2eygptigj2pjons2vph53clap4xqh6hudkk75rq';
-		$args['headers'] = array(
-			'Authorization' => 'Basic ' . base64_encode( $username . ':' . $password )
-		);
-		return $args;
-	});
-
-
 	function teljoy_gateway()
 	{
 		if (!class_exists('WC_Payment_Gateway')) return;
