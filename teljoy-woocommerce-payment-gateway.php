@@ -30,7 +30,7 @@ use Automattic\WooCommerce\Blocks\Payments\PaymentMethodRegistry;
 if (in_array($plugin_path, wp_get_active_and_valid_plugins()) || in_array($plugin_path, wp_get_active_network_plugins())) {
 
 	$myUpdateChecker = PucFactory::buildUpdateChecker(
-		'https://github.com/sinappsus-agency/teljoy-woocommerce/blob/main/info.json',  // The URL of the metadata file.
+		'https://github.com/sinappsus-agency/teljoy-woocommerce/raw/main/info.json',  // The URL of the metadata file.
 		__FILE__, // Full path to the main plugin file.
 		'teljoy-woocommerce-payment-gateway'  // Plugin slug. Usually it's the same as the name of the directory.
 	);
