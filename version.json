@@ -1,0 +1,8 @@
+{
+    "name" : "Teljoy woocommerce Payment Gateway",
+    "version" : "1.0.2",
+    "download_url" : "https://github.com/sinappsus-agency/teljoy-woocommerce?path=/teljoy-wordpress.zip",
+    "sections" : {
+        "description" : "Use Teljoy as a payment processor for WooCommerce."
+    }
+}

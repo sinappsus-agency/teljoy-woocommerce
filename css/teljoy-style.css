@@ -1,0 +1,14 @@
+.rejected_teljoy_item {
+		background-color: #979797 !important;
+		padding: 4px 4px;
+		border-radius: 5px;
+		color: white;
+}
+
+.teljoy #teljoytext img {
+	float: left;
+	margin-right: 20px;
+	margin-bottom: 50px;
+	max-width: 80px;
+	height: auto;
+}
