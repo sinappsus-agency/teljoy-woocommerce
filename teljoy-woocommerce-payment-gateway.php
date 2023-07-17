@@ -23,7 +23,7 @@ define('WC_GATEWAY_TELJOY_URL', untrailingslashit(plugins_url(basename(plugin_di
 define('WC_GATEWAY_TELJOY_PATH', untrailingslashit(plugin_dir_path(__FILE__)));
 
 $plugin_path = trailingslashit(WP_PLUGIN_DIR) . 'woocommerce/woocommerce.php';
-require_once(plugin_basename('plugin-update/plugin-update-checker.php'));
+require_once __DIR__ . '/plugin-update/plugin-update-checker.php';
 use YahnisElsts\PluginUpdateChecker\v5\PucFactory;
 use Automattic\WooCommerce\Blocks\Payments\PaymentMethodRegistry;
 
