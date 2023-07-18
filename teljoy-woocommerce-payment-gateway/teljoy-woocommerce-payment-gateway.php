@@ -2,7 +2,7 @@
 /*
  * Plugin Name: Teljoy Woocommerce Payment Gateway
  * Description: Use Teljoy as a payment processor for WooCommerce.
- * Plugin URI: #
+ * Plugin URI: https://teljoy.co.za/
  * Author URI: https://teljoy.co.za/
  * Version: 1.0.4
  * Author: Teljoy
