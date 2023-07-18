@@ -84,6 +84,9 @@ class WC_Gateway_Teljoy extends WC_Payment_Gateway
 		add_action('woocommerce_update_options_payment_gateways_' . $this->id, array($this, 'process_admin_options'));
 		add_action('woocommerce_api_wc_gateway_teljoy', array($this, 'check_API_response'));
 		add_action('admin_notices', array($this, 'teljoy_admin_notices'));
+
+		add_action('admin_enqueue_scripts', array($this, 'enqueue_admin_scripts'));
+		add_action('wp_ajax_download_log', array($this, 'download_log'));
 		// add_action( 'update_option_merchant_api_key', array($this, 'verify_client_status') );
 		// Disable Teljoy if cart contains unapproved products
 		add_filter('woocommerce_available_payment_gateways', array(
@@ -92,7 +95,18 @@ class WC_Gateway_Teljoy extends WC_Payment_Gateway
 		), 99, 1);
 	}
 
-
+	public function enqueue_admin_scripts() {
+		$script_path = plugins_url('/js/download_log_script.js', __FILE__);
+		$script_url = file_exists( plugin_dir_path(__FILE__) . '/js/download_log_script.js' ) ? $script_path : '';
+		wp_register_script('download_log_script', $script_url, array('jquery'), '1.0.0', true);
+		
+		if ( wp_script_is( 'download_log_script', 'registered' ) ) {
+			wp_enqueue_script('download_log_script');
+			wp_localize_script('download_log_script', 'my_ajax_object', array('ajax_url' => admin_url('admin-ajax.php')));
+		} 
+	}
+	
+	
 
 	/**
 	 * Initialise Gateway Settings Form Fields
@@ -204,14 +218,70 @@ class WC_Gateway_Teljoy extends WC_Payment_Gateway
 				'label'   => __('Enable transaction logging for gateway.', 'woocommerce-gateway-teljoy'),
 				'default' => 'no',
 			),
-			'verify_redirect_params' => array(
-				'title'   => __('Verify Gateway Return Params', 'woocommerce-gateway-teljoy'),
-				'type'    => 'checkbox',
-				'label'   => __('Enforce correct Query Paramaters on return from gateway.', 'woocommerce-gateway-teljoy'),
-				'default' => 'no',
+			'log_file' => array(
+				'title'       => __('Log File', 'woocommerce-gateway-teljoy'),
+				'type'        => 'select',
+				'description' => __('Select a log file to download.', 'woocommerce-gateway-teljoy'),
+				'options'     => $this->get_log_files(),
+				'default'     => '',
+				'desc_tip'    => true,
+				'class'       => 'teljoy-log-file', // New: Added a class
+				'id'          => 'teljoy_log_file',
 			),
 		);
 	}
+
+	
+	/**
+	 * Get all log files related to this plugin.
+	 *
+	 * @return array
+	 */
+	public function get_log_files() {
+		$log_files = array();
+		require_once WC()->plugin_path() . '/includes/log-handlers/class-wc-log-handler-file.php';
+	
+		// Get the path to a specific log file.
+		$log_file_path = WC_Log_Handler_File::get_log_file_path('teljoy');
+		// Extract the directory from the file path.
+		$log_dir = dirname($log_file_path) . '/';
+	
+		// Get all log files in the directory.
+		$files = glob($log_dir . '*teljoy*.log');
+	
+		// Loop through the files and add them to the log files array.
+		foreach ($files as $file) {
+			$log_files[basename($file)] = basename($file);
+		}
+	
+		return $log_files;
+	}
+
+	public function download_log() {
+		$file = sanitize_file_name($_GET['file']);
+		$log_files = $this->get_log_files();
+	
+		if (array_key_exists($file, $log_files)) {
+			$uploads_dir = wp_upload_dir();
+			$logs_dir_path = $uploads_dir['basedir'] . '/wc-logs/';
+			$file_path = $logs_dir_path . $log_files[$file];
+	
+			if (file_exists($file_path)) {
+				header('Content-Description: File Transfer');
+				header('Content-Type: application/octet-stream');
+				header('Content-Disposition: attachment; filename="'.basename($file_path).'"');
+				header('Expires: 0');
+				header('Cache-Control: must-revalidate');
+				header('Pragma: public');
+				header('Content-Length: ' . filesize($file_path));
+				flush(); 
+				readfile($file_path);
+				exit;
+			}
+		}
+		wp_die();
+	}
+	
 
 	/**
 	 * Determine if the gateway still requires setup.
