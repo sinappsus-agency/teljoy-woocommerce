@@ -7,7 +7,7 @@
     "download_url" : "https://github.com/sinappsus-agency/teljoy-woocommerce/raw/main/teljoy-woocommerce-payment-gateway.zip",
     "sections" : {
         "description" : "Use Teljoy as a payment processor for WooCommerce.",
-        "changelog": "1.0.4 - Adds support to download logs from Teljoy Gateway Settings page \n 1.0.3 - removes paramater security check due to api verification"
+        "changelog": "1.0.4 - Adds support to download logs from Teljoy Gateway Settings page \n 1.0.4 - removes paramater security check due to api verification"
     },
     "banners":{
         "low" : "https://krispykremesa.sinappsus.co.za/banner-772x250.png",
