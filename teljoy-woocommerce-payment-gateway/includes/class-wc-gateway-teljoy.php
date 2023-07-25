@@ -58,7 +58,7 @@ class WC_Gateway_Teljoy extends WC_Payment_Gateway
 		$this->validate_url     		= $this->environments['api_url'] . 'product';
 		$this->status_url				= $this->environments['api_url'] . 'status/';
 		$this->payment_url				= 'https://api.pay.staging.teljoy.co.za/payments/api/payment/';//$this->environments['api_url'] . 'payment/';
-		$this->prod_payment_url				= $this->environments['api_url'] . '/payments/api/payment/';//$this->environments['api_url'] . 'payment/';
+		$this->prod_payment_url			= 'https://api.pay.teljoy.co.za/api/payment/';//$this->environments['api_url'] . 'payment/';
 		$this->merchant_url				= $this->environments['api_url'] . 'merchant/';
 		$this->api_url					= $this->environments['api_url'];
 		$this->title            		= $this->get_option('title') ? $this->get_option('title') : __('Teljoy.', 'woo_teljoy');
@@ -893,7 +893,7 @@ class WC_Gateway_Teljoy extends WC_Payment_Gateway
 	{
 
 		$verify_transaction = wp_remote_get(
-			$this->prod_payment_url . '' . get_post_meta(self::get_order_prop($order, 'id'), 'teljoy_transaction_id', true).'/status',
+			$this->status_url . '' . get_post_meta(self::get_order_prop($order, 'id'), 'teljoy_transaction_id', true),
 			array(
 				'headers' => array(
 					'Content-Type' => 'application/json',
@@ -911,9 +911,9 @@ class WC_Gateway_Teljoy extends WC_Payment_Gateway
 			return false;
 		}
 		//is this a valid response
-		if ($status->statusCode && $status->statusCode == 404) {
-			return false;
-		}
+		// if ($status->statusCode && $status->statusCode == 404) {
+		// 	return false;
+		// }
 		//does the query string and the product lookup id match
 		if ($status->order_id != self::get_order_prop($order, 'id')) {
 			return false;
@@ -1119,7 +1119,7 @@ class WC_Gateway_Teljoy extends WC_Payment_Gateway
 			"alt_trust_value": "' . $alt_trust_value . '"
 		}';
 
-		$response = wp_remote_post($this->prod_payment_url . '' . get_post_meta(self::get_order_prop($order, 'id'), 'teljoy_transaction_id', true).'/status', array(
+		$response = wp_remote_post($this->status_url . '' . get_post_meta(self::get_order_prop($order, 'id'), 'teljoy_transaction_id', true), array(
 			'body' => $payload,
 			'headers' => array(
 				'Content-Type' => 'application/json',
