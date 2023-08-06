@@ -39,6 +39,5 @@ If you get stuck, you can contact support@teljoy.co.za
 == Changelog ==
 
 
-
-[See changelog for all versions](#).
-
+= 1.0.5 - 2023-08-06 =
+* Add - General Woocommerce Marketplace requirements.
