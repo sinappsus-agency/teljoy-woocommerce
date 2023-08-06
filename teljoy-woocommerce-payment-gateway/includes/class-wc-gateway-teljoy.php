@@ -57,8 +57,8 @@ class WC_Gateway_Teljoy extends WC_Payment_Gateway
 		$this->url              		= $this->environments['api_url'] . 'payment/create';
 		$this->validate_url     		= $this->environments['api_url'] . 'product';
 		$this->status_url				= $this->environments['api_url'] . 'status/';
-		$this->payment_url				= 'https://api.pay.staging.teljoy.co.za/payments/api/payment/';//$this->environments['api_url'] . 'payment/';
-		$this->prod_payment_url			= 'https://api.pay.teljoy.co.za/api/payment/';//$this->environments['api_url'] . 'payment/';
+		//$this->payment_url				= 'https://api.pay.staging.teljoy.co.za/payments/api/payment/';//$this->environments['api_url'] . 'payment/';
+		//$this->prod_payment_url			= 'https://api.pay.teljoy.co.za/api/payment/';//$this->environments['api_url'] . 'payment/';
 		$this->merchant_url				= $this->environments['api_url'] . 'merchant/';
 		$this->api_url					= $this->environments['api_url'];
 		$this->title            		= $this->get_option('title') ? $this->get_option('title') : __('Teljoy.', 'woo_teljoy');
