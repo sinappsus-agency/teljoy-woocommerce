@@ -976,12 +976,13 @@ class WC_Gateway_Teljoy extends WC_Payment_Gateway
 
 	public function generate_product_payload($obj)
 	{
+		//removed for testing
+			// "description": "' . esc_html($data['description']) . '",
+			// "short_description": "' . esc_html($data['short_description']) . '",
 
 		$data = $obj->get_data();
 		$item = '{
 			"name": "' . esc_html($data['name']) . '",
-			"description": "' . esc_html($data['description']) . '",
-			"short_description": "' . esc_html($data['short_description']) . '",
 			"brand": "string",
 			"merchant_product_id":"' . $data['id'] . '",
 			"quantity": "1",

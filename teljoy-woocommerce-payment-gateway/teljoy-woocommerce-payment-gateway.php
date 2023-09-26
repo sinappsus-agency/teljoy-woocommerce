@@ -4,7 +4,7 @@
  * Description: Use Teljoy as a payment processor for WooCommerce.
  * Plugin URI: https://teljoy.co.za/
  * Author URI: https://teljoy.co.za/
- * Version: 1.0.5
+ * Version: 1.0.6
  * Author: Teljoy
  * Requires at least: 4.4
  * Tested up to: 6.0
@@ -18,7 +18,7 @@
 
 defined('ABSPATH') || exit;
 
-define('WC_GATEWAY_TELJOY_VERSION', '1.0.5');
+define('WC_GATEWAY_TELJOY_VERSION', '1.0.6');
 define('WC_GATEWAY_TELJOY_URL', untrailingslashit(plugins_url(basename(plugin_dir_path(__FILE__)), basename(__FILE__))));
 define('WC_GATEWAY_TELJOY_PATH', untrailingslashit(plugin_dir_path(__FILE__)));
 

@@ -38,6 +38,8 @@ If you get stuck, you can contact support@teljoy.co.za
 
 == Changelog ==
 
+= 1.0.6 - 2023-09-26 =
+* Remove - unused fields for product lookup.
 
 = 1.0.5 - 2023-08-06 =
 * Add - General Woocommerce Marketplace requirements.
