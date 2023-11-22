@@ -1,7 +1,7 @@
 {
     "name" : "Teljoy Woocommerce Payment Gateway",
     "slug" : "teljoy-woocommerce-payment-gateway",
-    "version" : "1.0.76",
+    "version" : "1.0.7",
     "author"  : "Teljoy",
     "author_uri" : "https://teljoy.co.za",
     "download_url" : "https://github.com/sinappsus-agency/teljoy-woocommerce/raw/main/teljoy-woocommerce-payment-gateway.zip",

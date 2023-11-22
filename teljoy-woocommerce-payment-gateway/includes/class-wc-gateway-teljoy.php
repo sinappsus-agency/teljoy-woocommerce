@@ -33,7 +33,7 @@ class WC_Gateway_Teljoy extends WC_Payment_Gateway
 		$this->id = 'teljoy';
 		$this->version = WC_GATEWAY_TELJOY_VERSION;
 		$this->method_title = __('Teljoy', 'woo_teljoy');
-		$this->method_description = __('Use Teljoy to processor payments for WooCommerce.', 'woo_teljoy');
+		$this->method_description = __('Use TeljoyPay to processor payments for WooCommerce.', 'woo_teljoy');
 		$this->icon = WC_GATEWAY_TELJOY_URL . "/media/teljoy_pay_logo_small.png";
 		$this->debug_email        = $this->get_option('admin_email');
 		$this->available_countries  = array('ZA');
@@ -61,11 +61,11 @@ class WC_Gateway_Teljoy extends WC_Payment_Gateway
 		//$this->prod_payment_url			= 'https://api.pay.teljoy.co.za/api/payment/';//$this->environments['api_url'] . 'payment/';
 		$this->merchant_url				= $this->environments['api_url'] . 'merchant/';
 		$this->api_url					= $this->environments['api_url'];
-		$this->title            		= $this->get_option('title') ? $this->get_option('title') : __('Teljoy.', 'woo_teljoy');
+		$this->title            		= $this->get_option('title') ? $this->get_option('title') : __('Teljoy', 'woo_teljoy');
 		$this->debug_email    			= $this->get_option('debug_email', get_option('admin_email'));
 		$this->response_url	    		= add_query_arg('wc-api', 'WC_Gateway_Teljoy', home_url('/'));
 		$this->send_debug_email 		= 'yes' === $this->get_option('send_debug_email');
-		$this->description      		= $this->get_option('description') ? $this->get_option('description') : __('Try It, Love It, Own It. You will be redirected to Teljoy to securely complete your payment.', 'woo_teljoy');
+		$this->description      		= $this->get_option('description') ? $this->get_option('description') : __('Try It, Love It, Own It. You will be redirected to TeljoyPay to securely complete your payment.', 'woo_teljoy');
 		$this->enabled          		= 'yes' === $this->get_option('enabled') ? 'yes' : 'no';
 		$this->enable_logging   		= 'yes' === $this->get_option('enable_logging');
 		$this->verify_redirect_params 	= 'yes' === $this->get_option('verify_redirect_params');
