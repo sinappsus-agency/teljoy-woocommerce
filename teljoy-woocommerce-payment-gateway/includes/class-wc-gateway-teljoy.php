@@ -1287,7 +1287,7 @@ if (isset($teljoy_on_cart) && $teljoy_on_cart == 'yes') {
 		global $woocommerce;
 		$gateway = new WC_Gateway_Teljoy();
 		$minPrice_cut = 0;
-		$message = 'Or, for only ';
+		$message = 'Or, From only ';
 		$options = get_option('woocommerce_teljoy_settings', 'gets the option');
 		$img = plugins_url('../media/teljoy_pay_logo.png', __FILE__);
 		if (isset($woocommerce->cart->cart_contents) && count($woocommerce->cart->cart_contents) >= 1) {
@@ -1302,7 +1302,7 @@ if (isset($teljoy_on_cart) && $teljoy_on_cart == 'yes') {
 
 					if ($options['teljoy_cart_as_combined'] && $options['teljoy_cart_as_combined'] == 'yes') {
 						$minPrice_cut = ($minPrice_cut + $item->price);
-						$message = 'Or, for only ';
+						$message = 'Or, From only ';
 					} else {
 						if ($item->price < $minPrice_cut || $minPrice_cut == 0) {
 							$minPrice_cut = $item->price;
@@ -1357,7 +1357,7 @@ function woo_teljoy_frontend_widget_legacy()
 	if ($teljoy_price) {
 		// 	return '<div class="teljoy"><div id="teljoytext"><img id="teljoyCalculatorWidgetLogo" width="100px" height="auto" src="' . WC_GATEWAY_TELJOY_URL . "/media/teljoy_logo.svg" . '"/></div><p class="teljoy-copy">This product is not currently</b></p></div>';
 		// } else {
-		return '<div class="teljoy"><div id="teljoytext"><img id="teljoyCalculatorWidgetLogo" width="100px" height="auto" src="' . WC_GATEWAY_TELJOY_URL . "/media/teljoy_logo.svg" . '"/></div><p class="teljoy-copy">Or, for only <b>R' . $teljoy_price->price . ',00 per month</b>, try it, love it, own it. Apply with Teljoy.
+		return '<div class="teljoy"><div id="teljoytext"><img id="teljoyCalculatorWidgetLogo" width="100px" height="auto" src="' . WC_GATEWAY_TELJOY_URL . "/media/teljoy_logo.svg" . '"/></div><p class="teljoy-copy">Or, From only <b>R' . $teljoy_price->price . ',00 per month</b>, try it, love it, own it. Apply with Teljoy.
 		<br><a target="_blank" href="https://www.teljoy.co.za/">Learn more</a></p></div>';
 	}
 }
@@ -1373,7 +1373,7 @@ function woo_teljoy_frontend_widget()
             <div id="teljoytext">
                 <img id="teljoyCalculatorWidgetLogo" width="100px" height="auto" src="' . WC_GATEWAY_TELJOY_URL . '/media/teljoy_logo.svg"/>
             </div>
-            <p class="teljoy-copy">Or, for only <b>R' . $teljoy_price->price . ',00 per month</b>, try it, love it, own it. Apply with Teljoy.
+            <p class="teljoy-copy">Or, From only <b>R' . $teljoy_price->price . ',00 per month</b>, try it, love it, own it. Apply with Teljoy.
             <br><a href="#" id="openModal">Learn more</a></p>
         </div>
         <div id="teljoyModal" class="modal">
