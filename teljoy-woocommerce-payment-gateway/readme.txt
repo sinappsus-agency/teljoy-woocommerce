@@ -37,6 +37,8 @@ For help setting up and configuring, please refer to our [user guide](#)
 If you get stuck, you can contact support@teljoy.co.za
 
 == Changelog ==
+= 1.0.7 - 2023-11-16 =
+* Add - New Teljoy Pay logo.
 
 = 1.0.6 - 2023-09-26 =
 * Remove - unused fields for product lookup.

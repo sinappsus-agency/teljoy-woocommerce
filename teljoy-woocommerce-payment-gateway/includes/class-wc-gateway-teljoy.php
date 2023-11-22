@@ -34,7 +34,7 @@ class WC_Gateway_Teljoy extends WC_Payment_Gateway
 		$this->version = WC_GATEWAY_TELJOY_VERSION;
 		$this->method_title = __('Teljoy', 'woo_teljoy');
 		$this->method_description = __('Use Teljoy to processor payments for WooCommerce.', 'woo_teljoy');
-		$this->icon = WC_GATEWAY_TELJOY_URL . "/media/teljoy_logo.png";
+		$this->icon = WC_GATEWAY_TELJOY_URL . "/media/teljoy_pay_logo_small.png";
 		$this->debug_email        = $this->get_option('admin_email');
 		$this->available_countries  = array('ZA');
 		$this->available_currencies = (array)apply_filters('woocommerce_gateway_teljoy_available_currencies', array('ZAR'));
@@ -1289,7 +1289,7 @@ if (isset($teljoy_on_cart) && $teljoy_on_cart == 'yes') {
 		$minPrice_cut = 0;
 		$message = 'Or, for only ';
 		$options = get_option('woocommerce_teljoy_settings', 'gets the option');
-		$img = plugins_url('../media/teljoy_logo.png', __FILE__);
+		$img = plugins_url('../media/teljoy_pay_logo.png', __FILE__);
 		if (isset($woocommerce->cart->cart_contents) && count($woocommerce->cart->cart_contents) >= 1) {
 
 			$showTeljoy = true;
@@ -1312,7 +1312,7 @@ if (isset($teljoy_on_cart) && $teljoy_on_cart == 'yes') {
 			}
 
 			if ($showTeljoy) {
-				echo wp_kses_post('<div id="float-on-cart" style="color:black !important;margin-top:4px;">' . $message . '<strong class="teljoy-highlight" style="color: #ff003e !important;font-size: inherit;font-weight: inherit;">' . wc_price($minPrice_cut) . ' per month</strong> , try it, love it, own it. <br/>Apply with <img src="' . $img . '" alt="Teljoy" class="float-logo" style="width: 50px;vertical-align: baseline;"/> <a target="_blank" href="https://www.teljoy.co.za/">Learn more</a></div>');
+				echo wp_kses_post('<div id="float-on-cart" style="color:black !important;margin-top:4px;">' . $message . '<strong class="teljoy-highlight" style="color: #ff003e !important;font-size: inherit;font-weight: inherit;">' . wc_price($minPrice_cut) . ' per month</strong> , try it, love it, own it. <br/>Apply with <img src="' . $img . '" alt="Teljoy" class="float-logo" style="width: 70px;vertical-align: baseline;"/> <a target="_blank" href="https://www.teljoy.co.za/">Learn more</a></div>');
 			}
 		}
 	}
