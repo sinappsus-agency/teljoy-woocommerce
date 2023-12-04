@@ -1366,7 +1366,11 @@ function woo_teljoy_frontend_widget()
 	$gateway = new WC_Gateway_Teljoy();
 	global $product;
 
-	$teljoy_price = $gateway->api_product_lookup($product, $product->get_id());
+	try {
+		$teljoy_price = $gateway->api_product_lookup($product, $product->get_id());
+	} catch (Exception $e) {
+		$teljoy_price = false;
+	}
 	if ($teljoy_price) {
 		return '
         <div class="teljoy">

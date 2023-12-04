@@ -1,13 +1,13 @@
 {
     "name" : "Teljoy Woocommerce Payment Gateway",
     "slug" : "teljoy-woocommerce-payment-gateway",
-    "version" : "1.0.7",
+    "version" : "1.0.8",
     "author"  : "Teljoy",
     "author_uri" : "https://teljoy.co.za",
     "download_url" : "https://github.com/sinappsus-agency/teljoy-woocommerce/raw/main/teljoy-woocommerce-payment-gateway.zip",
     "sections" : {
         "description" : "Use Teljoy as a payment processor for WooCommerce.",
-        "changelog": " 1.0.7 Logo update \n 1.0.6 fix javascript injection into payload \n 1.0.4 - Adds support to download logs from Teljoy Gateway Settings page \n 1.0.4 - removes paramater security check due to api verification \n 1.0.5 update status paths "
+        "changelog": " 1.0.8 Added Shortcode error handling \n 1.0.7 Logo update \n 1.0.6 fix javascript injection into payload \n 1.0.4 - Adds support to download logs from Teljoy Gateway Settings page \n 1.0.4 - removes paramater security check due to api verification \n 1.0.5 update status paths "
     },
     "banners":{
         "low" : "https://krispykremesa.sinappsus.co.za/banner-772x250.png",
