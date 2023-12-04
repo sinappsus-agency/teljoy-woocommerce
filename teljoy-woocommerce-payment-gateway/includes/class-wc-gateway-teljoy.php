@@ -1351,9 +1351,9 @@ function woo_teljoy_frontend_widget_legacy()
 {
 	$gateway = new WC_Gateway_Teljoy();
 	global $product;
-	if(null !== $product->get_id()){
+	if (method_exists($product, 'get_id')) {
 		return '';
-		}
+	}
 	
 
 	// TODO:: add or check for a flag against the product so we can skip this step if its already been checked
@@ -1375,10 +1375,9 @@ function woo_teljoy_frontend_widget()
 {
 	$gateway = new WC_Gateway_Teljoy();
 	global $product;
-	if(null !== $product->get_id()){
+	if (method_exists($product, 'get_id')) {
 		return '';
-		}
-	
+	}
 
 	try {
 		$teljoy_price = $gateway->api_product_lookup($product, $product->get_id());
