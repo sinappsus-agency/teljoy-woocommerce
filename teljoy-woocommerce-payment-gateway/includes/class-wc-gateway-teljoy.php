@@ -1353,12 +1353,18 @@ function woo_teljoy_frontend_widget_legacy()
 	global $product;
 
 	// TODO:: add or check for a flag against the product so we can skip this step if its already been checked
+	try {
 	$teljoy_price = $gateway->api_product_lookup($product, $product->get_id());
+	} catch (Exception $e) {
+		$teljoy_price = false;
+	}
 	if ($teljoy_price) {
 		// 	return '<div class="teljoy"><div id="teljoytext"><img id="teljoyCalculatorWidgetLogo" width="100px" height="auto" src="' . WC_GATEWAY_TELJOY_URL . "/media/teljoy_logo.svg" . '"/></div><p class="teljoy-copy">This product is not currently</b></p></div>';
 		// } else {
 		return '<div class="teljoy"><div id="teljoytext"><img id="teljoyCalculatorWidgetLogo" width="100px" height="auto" src="' . WC_GATEWAY_TELJOY_URL . "/media/teljoy_logo.svg" . '"/></div><p class="teljoy-copy">Or, From only <b>R' . $teljoy_price->price . ',00 per month</b>, try it, love it, own it. Apply with Teljoy.
 		<br><a target="_blank" href="https://www.teljoy.co.za/">Learn more</a></p></div>';
+	}else{
+		return '';
 	}
 }
 function woo_teljoy_frontend_widget()
@@ -1452,6 +1458,8 @@ function woo_teljoy_frontend_widget()
 				font-weight: bold;
 			}
         </style>';
+	}else{
+		return '';
 	}
 }
 
