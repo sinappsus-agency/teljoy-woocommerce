@@ -7,6 +7,3 @@ $environments["sandbox"]     =    array(
 $environments["production"] =    array(
     "api_url"    =>    "https://pay.teljoy.co.za/api/",
 );
-
-//https://pay.staging.teljoy.co.za/api/
-//https://pay.teljoy.co.za/api/
