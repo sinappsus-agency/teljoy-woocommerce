@@ -1351,7 +1351,7 @@ function woo_teljoy_frontend_widget_legacy()
 {
 	$gateway = new WC_Gateway_Teljoy();
 	global $product;
-	if (!method_exists($product, 'get_id') !== null) {
+	if (!method_exists($product, 'get_id')) {
 		return '';
 	}
 	
@@ -1375,7 +1375,7 @@ function woo_teljoy_frontend_widget()
 {
 	$gateway = new WC_Gateway_Teljoy();
 	global $product;
-	if (method_exists($product, 'get_id')) {
+	if (!method_exists($product, 'get_id')) {
 		return '';
 	}
 
