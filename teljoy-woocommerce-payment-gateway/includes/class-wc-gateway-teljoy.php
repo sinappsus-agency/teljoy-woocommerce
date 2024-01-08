@@ -1396,7 +1396,7 @@ function woo_teljoy_frontend_widget()
         <div id="teljoyModal" class="modal">
             <div class="modal-content">
                 <span id="closeModal">&times;</span>
-                <iframe src="https://krispykremesa.sinappsus.co.za" frameborder="0" style="width:100%;height:100%;"></iframe>
+                <iframe src="' . WC_GATEWAY_TELJOY_URL . "/popup/index.html" . '"  frameborder="0" style="width:100%;height:100%;"></iframe>
             </div>
         </div>
         <script>
