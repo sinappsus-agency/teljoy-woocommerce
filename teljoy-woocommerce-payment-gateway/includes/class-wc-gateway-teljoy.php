@@ -1294,6 +1294,9 @@ if (isset($teljoy_on_cart) && $teljoy_on_cart == 'yes') {
 
 			$showTeljoy = true;
 			$response = $gateway->api_bulk_product_lookup($woocommerce->cart->cart_contents);
+			if($response->statusCode !== null && $response->statusCode == 500){
+				return false;
+				}
 
 			foreach ($response as $item) {
 				if ($item->accepted == false) {
@@ -1488,6 +1491,10 @@ function highlight_teljoy_items_in_cart()
 
 		// issue the cart to the api so we can get back a list of what is accepted and what is not
 		$items = $gateway->api_bulk_product_lookup(WC()->cart->get_cart());
+		//exit if api fails
+		if($items->statusCode !== null && $items->statusCode == 500){
+			return false;
+			}
 		$position = 0;
 		//this is a fallback for demonstration till the api is working again
 		foreach (WC()->cart->get_cart() as $cart_item_key => $cart_item) {
