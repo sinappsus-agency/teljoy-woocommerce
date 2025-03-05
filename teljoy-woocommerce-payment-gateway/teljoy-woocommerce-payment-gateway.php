@@ -29,43 +29,46 @@ use Automattic\WooCommerce\Blocks\Payments\PaymentMethodRegistry;
 
 if (in_array($plugin_path, wp_get_active_and_valid_plugins()) || in_array($plugin_path, wp_get_active_network_plugins())) {
 
-	$myUpdateChecker = PucFactory::buildUpdateChecker(
-		'https://github.com/sinappsus-agency/teljoy-woocommerce/raw/main/teljoy-woocommerce-payment-gateway/info.json',  // The URL of the metadata file.
-		__FILE__, // Full path to the main plugin file.
-		'teljoy-woocommerce-payment-gateway'  // Plugin slug. Usually it's the same as the name of the directory.
-	);
+    $myUpdateChecker = PucFactory::buildUpdateChecker(
+        'https://github.com/sinappsus-agency/teljoy-woocommerce/raw/main/teljoy-woocommerce-payment-gateway/info.json',  // The URL of the metadata file.
+        __FILE__, // Full path to the main plugin file.
+        'teljoy-woocommerce-payment-gateway'  // Plugin slug. Usually it's the same as the name of the directory.
+    );
 
-	function teljoy_gateway()
-	{
-		if (!class_exists('WC_Payment_Gateway')) return;
+    function teljoy_gateway()
+    {
+        if (!class_exists('WC_Payment_Gateway')) return;
 
-		require_once(plugin_basename('includes/class-wc-gateway-teljoy.php'));
-		require_once(plugin_basename('includes/class-wc-gateway-teljoy-privacy.php'));
-		load_plugin_textdomain('woocommerce-gateway-teljoy', false, trailingslashit(dirname(plugin_basename(__FILE__))));
-	}
+        require_once(plugin_basename('includes/class-wc-gateway-teljoy.php'));
+        require_once(plugin_basename('includes/class-wc-gateway-teljoy-store-selector.php'));
+        require_once(plugin_basename('includes/class-wc-gateway-teljoy-privacy.php'));
+        load_plugin_textdomain('woocommerce-gateway-teljoy', false, trailingslashit(dirname(plugin_basename(__FILE__))));
 
-	add_action('plugins_loaded', 'teljoy_gateway', 0);
+        // Debugging statement
+        error_log('Teljoy Gateway Loaded');
+    }
 
+    add_action('plugins_loaded', 'teljoy_gateway', 0);
 
-	//plugin links
-	function woocommerce_teljoy_plugin_links($links)
-	{
-		$settings_url = add_query_arg(
-			array(
-				'page' => 'wc-settings',
-				'tab' => 'checkout',
-				'section' => 'wc_gateway_teljoy',
-			),
-			admin_url('admin.php')
-		);
+    //plugin links
+    function woocommerce_teljoy_plugin_links($links)
+    {
+        $settings_url = add_query_arg(
+            array(
+                'page' => 'wc-settings',
+                'tab' => 'checkout',
+                'section' => 'wc_gateway_teljoy',
+            ),
+            admin_url('admin.php')
+        );
 
-		$plugin_links = array(
-			'<a href="' . esc_url($settings_url) . '">' . __('Settings', 'woocommerce-gateway-teljoy') . '</a>',
-			'<a href="#">' . __('Support', 'woocommerce-gateway-teljoy') . '</a>',
-			'<a href="#">' . __('Docs', 'woocommerce-gateway-teljoy') . '</a>',
-		);
+        $plugin_links = array(
+            '<a href="' . esc_url($settings_url) . '">' . __('Settings', 'woocommerce-gateway-teljoy') . '</a>',
+            '<a href="#">' . __('Support', 'woocommerce-gateway-teljoy') . '</a>',
+            '<a href="#">' . __('Docs', 'woocommerce-gateway-teljoy') . '</a>',
+        );
 
-		return array_merge($plugin_links, $links);
-	}
-	add_filter('plugin_action_links_' . plugin_basename(__FILE__), 'woocommerce_teljoy_plugin_links');
+        return array_merge($plugin_links, $links);
+    }
+    add_filter('plugin_action_links_' . plugin_basename(__FILE__), 'woocommerce_teljoy_plugin_links');
 }

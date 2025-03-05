@@ -179,6 +179,13 @@ class WC_Gateway_Teljoy extends WC_Payment_Gateway
 				'default' => 'no',
 				'desc_tip' => true,
 			],
+			'teljoy_store_locator' => [
+				'title' => 'Enable Store Locations',
+				'label' => 'Enable',
+				'type' => 'checkbox',
+				'default' => 'no',
+				'description' =>  __('This will enable a new post type for store locations. To add this to your ui, use the following shortcode [store_location_dropdown] .', 'woo_teljoy'),
+			],
 			'teljoy_cart_as_combined' => [
 				'title' => 'Set cart rate based on total instead of lowest',
 				'label' => 'Enable',
@@ -680,6 +687,14 @@ class WC_Gateway_Teljoy extends WC_Payment_Gateway
 		$order->update_meta_data('teljoy_trust_seed', base64_encode($seed_value_base));
 		$order->save_meta_data();
 
+		
+		$active_store_location = '';
+		$store_id = get_option('active_store_location');
+		if ($store_id) {
+			$store = get_post($store_id);
+			$active_store_location = $store->post_title;
+		} 
+
 		$OrderBodyString .= ',
 					"redirects": {
 						"order_id": "' . $order_id . '",
@@ -690,7 +705,8 @@ class WC_Gateway_Teljoy extends WC_Payment_Gateway
 						"final_amount": ' . number_format($order->get_total(), 2, '.', '') . ',
 						"tax_amount": ' . $order->get_total_tax() . ',
 						"shipping_amount":' . $shipping_total . ', 
-						"discount": "0"
+						"discount": "0",
+						"merchant_store": "' . $active_store_location . '"
 					}
 					
 					}';
