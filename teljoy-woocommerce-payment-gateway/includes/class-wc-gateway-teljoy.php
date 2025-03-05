@@ -612,6 +612,16 @@ class WC_Gateway_Teljoy extends WC_Payment_Gateway
 			$order->update_meta_data('teljoy_redirect_url', $order_body->redirect_url);
 			$order->save_meta_data();
 
+			//store location of store if available
+			$store_id = get_option('active_store_location');
+			if ($store_id) {
+				$store = get_post($store_id);
+				$order->update_meta_data('teljoy_store_location', $store->post_title);
+				$order->save_meta_data();
+			} 
+			
+			
+
 			$redirectURL = $order_body->redirect_url;
 
 			return array(
